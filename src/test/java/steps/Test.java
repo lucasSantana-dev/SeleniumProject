@@ -68,6 +68,8 @@ public class Test {
 
     @After
     public void tear(){
-        driver.quit();
+        if(driver != null) {
+            driver.quit();
+        }
     }
 }
