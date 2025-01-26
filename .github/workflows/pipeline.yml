@@ -10,7 +10,7 @@ on:
 
 jobs:
   e2e-tests:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: checkout projeto
@@ -24,17 +24,11 @@ jobs:
 
       - name: Configurar Chromer Driver
         run: |
-          sudo apt-get update
-          sudo apt-get install -y wget unzip
-          sudo apt-get install -y google-chrome-stable
-          wget -q -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip
-          sudo unzip /tmp/chromedriver.zip -d /usr/local/bin/
-          sudo chmod +x /usr/local/bin/chromedriver
-        shell: bash
-
-
-      - name: Instalar dependências com Maven
-        run: mvn clean install
+          choco install googlechrome
+          wget https://chromedriver.storage.googleapis.com/$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_win32.zip
+          unzip chromedriver_win32.zip
+          move chromedriver.exe C:\chromedriver
+          shell: bash
 
       - name: Executar testes
         run: mvn test
