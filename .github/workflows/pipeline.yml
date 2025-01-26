@@ -1,0 +1,31 @@
+name: Execução de testes
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  schedule:
+    - cron: '0 9,11,15,18 * * 1,2,3,4,5'
+
+jobs:
+  e2e-tests:
+    runs-on: windows-latest
+
+    steps:
+      - name: checkout projeto
+        uses: actions/checkout@v2
+
+      - name: Configurar ambiente Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '23.0.2'
+          distribution: 'oracle'
+
+      - name: Instalar dependências com Maven
+        run: mvn clean install
+
+      - name: Executar testes
+        run: mvn test
+
+
