@@ -28,7 +28,6 @@ jobs:
           curl -LO https://chromedriver.storage.googleapis.com/$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_win32.zip
           unzip chromedriver_win32.zip
           move chromedriver.exe C:\chromedriver
-          shell: bash
 
       - name: Executar testes
         run: mvn test
