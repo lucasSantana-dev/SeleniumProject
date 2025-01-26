@@ -22,6 +22,12 @@ jobs:
           java-version: '23.0.2'
           distribution: 'oracle'
 
+      - name: Configurar Chromer Driver
+        uses: nanasess/setup-chromedriver@v1
+        with:
+          chrome-version: 'stable' # Instala a versão estável do Chrome e ChromeDriver correspondente
+
+
       - name: Instalar dependências com Maven
         run: mvn clean install
 
