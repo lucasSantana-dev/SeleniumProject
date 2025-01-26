@@ -10,7 +10,7 @@ on:
 
 jobs:
   e2e-tests:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: checkout projeto
@@ -23,9 +23,14 @@ jobs:
           distribution: 'oracle'
 
       - name: Configurar Chromer Driver
-        uses: nanasess/setup-chromedriver@v1
-        with:
-          chrome-version: 'stable' # Instala a versão estável do Chrome e ChromeDriver correspondente
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget unzip
+          sudo apt-get install -y google-chrome-stable
+          wget -q -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip
+          sudo unzip /tmp/chromedriver.zip -d /usr/local/bin/
+          sudo chmod +x /usr/local/bin/chromedriver
+        shell: bash
 
 
       - name: Instalar dependências com Maven
