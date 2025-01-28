@@ -75,7 +75,7 @@ public class Test {
 
             if (statusProduto.getText().matches("In stock")) break;
         }
-        utils.esperarElemento(driver, tempo,By.xpath("//button/span[text()='Add to cart']"));
+        utils.esperarElementoClicavel(driver, tempo, By.xpath("//button[@class='exclusive']"));
         driver.findElement(By.xpath("//button[@class='exclusive']")).click();
         utils.esperarElemento(driver,tempo,By.xpath("//a[@class='btn btn-default button button-medium']"));
         driver.findElement(By.xpath("//a[@class='btn btn-default button button-medium']")).click();

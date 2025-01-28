@@ -9,12 +9,16 @@ import java.time.Duration;
 
 public class Utils {
 
+    WebDriverWait wait;
+
     public void esperarElemento(WebDriver driverNav, Duration tempoSec, By by) {
-        WebDriverWait wait = new WebDriverWait(driverNav, tempoSec);
+        wait = new WebDriverWait(driverNav, tempoSec);
         wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
-    //public void moverComJs(WebElement elemento){
-    //   ((JavascriptExecutor) driver()).executeScript("arguments[0].scrollIntoView(true);", elemento);
-    //}
+    public void esperarElementoClicavel(WebDriver driverNav, Duration tempoSec, By by){
+        wait = new WebDriverWait(driverNav, tempoSec);
+        wait.until(ExpectedConditions.elementToBeClickable(by));
+    }
+
 }
