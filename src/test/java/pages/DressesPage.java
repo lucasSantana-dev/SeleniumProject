@@ -14,7 +14,7 @@ public class DressesPage {
     String sizeSelect = "group_1";
     String ulColor = "color_to_pick_list";
     String colorItem = "//ul[@id='color_to_pick_list']/li";
-    String buttonAddToCart = "//button[@class='exclusive']";
+    String buttonAddToCart = "//button[@name='Submit']";
     String statusFlag = "availability_statut";
     String buttonProceedToCheckout = "//a[@class='btn btn-default button button-medium']";
 
