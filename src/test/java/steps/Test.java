@@ -8,58 +8,41 @@ import io.cucumber.java.en.Then;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
+import pages.DressesPage;
 import pages.HomePage;
+import pages.LoginPage;
+import pages.MyAccountPage;
 import utils.Utils;
 import java.time.Duration;
-import java.util.List;
 
 public class Test {
 
     private final Duration tempo = Duration.ofSeconds(5);
     HomePage homePage = new HomePage();
+    LoginPage loginPage = new LoginPage();
+    DressesPage dressesPage = new DressesPage();
+    MyAccountPage myAccountPage = new MyAccountPage();
 
     @Before
     public void fazerLogin() {
-        homePage.fazerLogin();
+        loginPage.fazerLogin();
+        myAccountPage.validarPaginaMyAccount();
     }
 
     @Given("Estou acessando a home page")
     public void acessarHomePage() {
-        Utils.esperarElemento(tempo, By.xpath("//img[@class='logo img-responsive']"));
-        String tituloPagina = Utils.initDriver().getTitle();
-        Assert.assertEquals("My Shop", tituloPagina);
+        homePage.validarTituloHome();
     }
 
     @And("Acesso a aba Dresses")
-    public void acessarAbaTshirts() {
-        WebElement buttonTshirt = Utils.initDriver().findElement(By.xpath("(//a[@title='Dresses'])[2]"));
-        buttonTshirt.click();
-        Assert.assertEquals("Dresses - My Shop", Utils.initDriver().getTitle());
+    public void acessarAbaDresses() {
+        homePage.acessarMenuDresses();
     }
 
     @And("Adiciono produto no carrinho")
     public void adicionarProdutoNoCarrinho(){
-        Utils.esperarElemento(tempo, By.xpath("(//img[@alt='Printed Dress'])[2]"));
-        Utils.initDriver().findElement(By.xpath("(//img[@alt='Printed Dress'])[2]")).click();
-        Utils.esperarElemento(tempo, By.id("short_description_content"));
-        WebElement selectSize = Utils.initDriver().findElement(By.id("group_1"));
-        Select select = new Select(selectSize);
-        select.selectByVisibleText("M");
-        WebElement ulCor = Utils.initDriver().findElement(By.id("color_to_pick_list"));
-        List<WebElement> cores = ulCor.findElements(By.xpath("//ul[@id='color_to_pick_list']/li"));
-        WebElement statusProduto = Utils.initDriver().findElement(By.id("availability_statut"));
-
-        //selecionar cor até o item ficar disponível
-        for(WebElement itemATual : cores) {
-            itemATual.click();
-
-            if (statusProduto.getText().matches("In stock")) break;
-        }
-        Utils.esperarElementoClicavel(tempo, By.xpath("//button[@class='exclusive']"));
-        Utils.initDriver().findElement(By.xpath("//button[@class='exclusive']")).click();
-        Utils.esperarElemento(tempo,By.xpath("//a[@class='btn btn-default button button-medium']"));
-        Utils.initDriver().findElement(By.xpath("//a[@class='btn btn-default button button-medium']")).click();
+        dressesPage.validarTitulo();
+        dressesPage.adicionarProdutoNoCarrinho();
     }
 
     @Then("Finalizo a compra")

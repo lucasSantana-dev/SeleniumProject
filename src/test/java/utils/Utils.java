@@ -1,6 +1,7 @@
 package utils;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,6 +14,7 @@ import java.time.Duration;
 public class Utils {
 
     private static WebDriver driver;
+    public static Duration tempo = Duration.ofSeconds(5);
 
     public static WebDriver initDriver(){
         if (driver == null) {
@@ -35,8 +37,8 @@ public class Utils {
         wait(tempoSec).until(ExpectedConditions.elementToBeClickable(by));
     }
 
-    public static void getElement(By by){
-        initDriver().findElement(by);
+    public static WebElement getElement(By by){
+        return initDriver().findElement(by);
     }
 
     public static void clickButton(String path){
@@ -47,6 +49,12 @@ public class Utils {
         WebElement input = initDriver().findElement(By.xpath(path));
         input.sendKeys(keys);
     }
+
+    public static void validarTitulo(String expectedTitle){
+        String tituloPagina = Utils.initDriver().getTitle();
+        Assert.assertEquals(expectedTitle, tituloPagina);
+    }
+
 
     public static void fecharDriver() {
         if (driver != null) {
