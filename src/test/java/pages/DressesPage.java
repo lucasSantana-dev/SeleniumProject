@@ -22,26 +22,33 @@ public class DressesPage {
         Utils.validarTitulo("Dresses - My Shop");
     }
 
-    public void adicionarProdutoNoCarrinho(){
-        Utils.esperarElemento(Utils.tempo, By.xpath(productImage));
-        Utils.clickButton(productImage);
-        Utils.esperarElemento(Utils.tempo, By.id(productDescription));
-
-        WebElement selectSize = Utils.getElement(By.id(sizeSelect));
-        Select select = new Select(selectSize);
-
-        select.selectByVisibleText("M");
-
+    public void selecionarItemAteFicarDisponivel(){
         WebElement ul = Utils.getElement(By.id(ulColor));
         List<WebElement> colors = ul.findElements(By.xpath(colorItem));
         WebElement statusProduto = Utils.getElement(By.id(statusFlag));
 
-        //selecionar cor até o item ficar disponível
         for(WebElement itemATual : colors) {
             itemATual.click();
 
             if (statusProduto.getText().matches("In stock")) break;
         }
+    }
+
+    public void selecionarTamanho(){
+        WebElement selectSize = Utils.getElement(By.id(sizeSelect));
+        Select select = new Select(selectSize);
+
+        select.selectByVisibleText("M");
+    }
+
+    public void adicionarProdutoNoCarrinho(){
+        Utils.esperarElemento(Utils.tempo, By.xpath(productImage));
+        Utils.clickButton(productImage);
+        Utils.esperarElemento(Utils.tempo, By.id(productDescription));
+
+        selecionarTamanho();
+        selecionarItemAteFicarDisponivel();
+
         Utils.esperarElementoClicavel(Utils.tempo, By.xpath(buttonAddToCart));
         Utils.clickButton(buttonAddToCart);
         Utils.esperarElemento(Utils.tempo,By.xpath(buttonProceedToCheckout));
