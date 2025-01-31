@@ -2,9 +2,7 @@ package runners;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
-import org.junit.ClassRule;
 import org.junit.runner.RunWith;
-import utils.AllureListener;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
