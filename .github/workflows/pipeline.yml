@@ -13,7 +13,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: checkout projeto
+      - name: Checkout do projeto
         uses: actions/checkout@v2
 
       - name: Configurar ambiente Java
@@ -22,7 +22,7 @@ jobs:
           java-version: '23.0.2'
           distribution: 'oracle'
 
-      - name: Configurar Chromer Driver
+      - name: Configurar Chrome Driver
         run: |
           choco install googlechrome
           curl -LO https://chromedriver.storage.googleapis.com/$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_win32.zip
@@ -32,12 +32,17 @@ jobs:
       - name: Executar testes
         run: mvn clean test
 
-      - name: Gerar Relatório de teste
-        run: mvn allure::report
+      - name: Salvar allure-results como artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results
+          path: allure-results/
+
+      - name: Gerar Relatório Allure
+        run: mvn allure:report
 
       - name: Salvar Relatório Allure como Artefato
         uses: actions/upload-artifact@v4
         with:
           name: allure-report
-          path: ${basedir}/allure-results
-
+          path: target/allure-report/
