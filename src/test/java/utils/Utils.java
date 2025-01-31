@@ -3,6 +3,7 @@ package utils;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -34,6 +35,12 @@ public class Utils {
 
     public static void esperarElementoClicavel(Duration tempoSec, By by){
         wait(tempoSec).until(ExpectedConditions.elementToBeClickable(by));
+    }
+
+    public static void clickWithJS(String path) {
+        WebElement button = driver.findElement(By.xpath(path));
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click();", button);
     }
 
     public static WebElement getElement(By by){

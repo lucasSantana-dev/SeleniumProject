@@ -1,7 +1,9 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import utils.Utils;
 
@@ -42,15 +44,15 @@ public class DressesPage {
     }
 
     public void adicionarProdutoNoCarrinho(){
-        Utils.esperarElemento(Utils.tempo, By.xpath(productImage));
+        Utils.esperarElementoClicavel(Utils.tempo, By.xpath(productImage));
         Utils.clickButton(productImage);
         Utils.esperarElemento(Utils.tempo, By.id(productDescription));
 
         selecionarTamanho();
         selecionarItemAteFicarDisponivel();
 
-        Utils.esperarElemento(Utils.tempo, By.xpath(buttonAddToCart));
-        Utils.clickButton(buttonAddToCart);
+        Utils.esperarElementoClicavel(Utils.tempo, By.xpath(buttonAddToCart));
+        Utils.clickWithJS(buttonAddToCart);
         Utils.esperarElemento(Utils.tempo,By.xpath(buttonProceedToCheckout));
         Utils.clickButton(buttonProceedToCheckout);
     }
