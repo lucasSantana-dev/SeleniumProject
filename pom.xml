@@ -14,6 +14,29 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <build>
+        <plugins>
+            <!-- Plugin do Allure -->
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.13.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>serve</goal> <!-- Serve para visualizar o relatório -->
+                            <goal>report</goal> <!-- Gera o relatório -->
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!-- Configurar a pasta de resultados do Allure -->
+                    <resultsDirectory>${basedir}/allure-results</resultsDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
     <dependencies>
         <dependency>
             <groupId>io.cucumber</groupId>
@@ -37,6 +60,19 @@
             <artifactId>webdrivermanager</artifactId>
             <version>5.5.3</version>
         </dependency>
-    </dependencies>
 
+        <!-- Allure Cucumber para Cucumber 7.x -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-cucumber7-jvm</artifactId>
+            <version>2.28.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit4</artifactId>
+            <version>2.21.0</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 </project>

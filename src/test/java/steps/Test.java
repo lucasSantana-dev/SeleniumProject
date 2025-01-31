@@ -5,6 +5,7 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.qameta.allure.Allure;
 import pages.*;
 import utils.Utils;
 
@@ -21,6 +22,7 @@ public class Test {
 
     @Before
     public void fazerLogin() {
+        Allure.step("Abrindo a página de login");
         loginPage.fazerLogin();
         myAccountPage.validarPaginaMyAccount();
     }

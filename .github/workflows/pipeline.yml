@@ -22,6 +22,10 @@ jobs:
           java-version: '23.0.2'
           distribution: 'oracle'
 
+      - name: Instalar Allure CLI
+        run: |
+          choco install allure
+
       - name: Configurar Chromer Driver
         run: |
           choco install googlechrome
@@ -30,6 +34,14 @@ jobs:
           move chromedriver.exe C:\chromedriver
 
       - name: Executar testes
-        run: mvn test
+        run: mvn clean test
 
+      - name: Gerar Relatório de teste
+        run: mvn allure::serve
+
+      - name: Salvar Relatório Allure como Artefato
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report
+          path: target/allure-report
 
