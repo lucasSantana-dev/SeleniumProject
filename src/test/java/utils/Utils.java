@@ -13,7 +13,7 @@ import java.time.Duration;
 public class Utils {
 
     private static WebDriver driver;
-    public static Duration tempo = Duration.ofSeconds(5);
+    public static Duration tempo = Duration.ofSeconds(10);
 
     public static WebDriver initDriver(){
         if (driver == null) {
