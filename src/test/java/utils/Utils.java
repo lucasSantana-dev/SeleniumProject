@@ -41,7 +41,7 @@ public class Utils {
     }
 
     public static void clickButton(String path){
-        initDriver().findElement(By.xpath(path)).click();
+        Utils.getElement(By.xpath(path)).click();
     }
 
     public static void sendKeys(String path, String keys){
