@@ -49,7 +49,7 @@ public class DressesPage {
         selecionarTamanho();
         selecionarItemAteFicarDisponivel();
 
-        Utils.esperarElementoClicavel(Utils.tempo, By.xpath(buttonAddToCart));
+        Utils.esperarElemento(Utils.tempo, By.xpath(buttonAddToCart));
         Utils.clickButton(buttonAddToCart);
         Utils.esperarElemento(Utils.tempo,By.xpath(buttonProceedToCheckout));
         Utils.clickButton(buttonProceedToCheckout);
