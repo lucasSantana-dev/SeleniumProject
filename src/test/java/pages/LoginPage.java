@@ -1,5 +1,6 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import utils.Utils;
 import java.time.Duration;
@@ -7,6 +8,7 @@ import java.time.Duration;
 public class LoginPage {
 
     Duration tempo = Duration.ofSeconds(5);
+    String userName = "Qa Test";
 
     String loginButton = "//a[@class='login']";
     String emailInput = "//input[@id='email']";
@@ -22,6 +24,13 @@ public class LoginPage {
         Utils.sendKeys(emailInput, "automatedTest@qa.com");
         Utils.sendKeys(passwdInput, "12345");
         Utils.clickButton(submitLoginButton);
+
+        assertUserNameInLoginButton();
+    }
+
+    public void assertUserNameInLoginButton(){
+        String userNameLoginButton = Utils.getElement(By.xpath("//a[@class='account']/span")).getText();
+        Assert.assertEquals(userName, userNameLoginButton);
     }
 
 }
