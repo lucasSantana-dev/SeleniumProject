@@ -20,8 +20,6 @@ public class Test {
     ShippingPage shippingPage = new ShippingPage();
     PaymentPage paymentPage = new PaymentPage();
 
-    String productPrice;
-
     @Before
     public void fazerLogin() {
         Allure.step("Abrindo a página de login");
@@ -47,6 +45,7 @@ public class Test {
 
     @Then("Finalizo a compra")
     public void finalizarCompra(){
+        summaryPage.validateInfos(DressesPage.productPrice);
         summaryPage.avancarEtapa();
         adressesPage.avancarEtapa();
         shippingPage.clicarCheckBox();
