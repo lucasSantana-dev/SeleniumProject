@@ -33,16 +33,16 @@ jobs:
         run: mvn clean test
 
       - name: Gerar Relatório Allure
-        run: mvn allure:report
+        run: mvn allure::serve
 
-      - name: Salvar allure-results como artefato
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-results
-          path: allure-results/
-
-      - name: Salvar Relatório Allure como Artefato
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-report
-          path: allure-results/
+#      - name: Salvar allure-results como artefato
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: allure-results
+#          path: allure-results/
+#
+#      - name: Salvar Relatório Allure como Artefato
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: allure-report
+#          path: allure-results/
