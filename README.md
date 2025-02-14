@@ -2,4 +2,4 @@ Este repositório contém um teste automatizado E2E (Selenium WebDriver, Cucumbe
 
 No repositório está configurado uma pipeline para rodar todos os testes caso seja feito um Push ou Pull Request para a branch Master. 
 
-Também está configurado um ambiente do allure para visualizar os resultados dos testes na interface da plataforma toda vez que o projeto for rodado, utilizando o comando 'allure::serve'.
+Também está configurado um ambiente do allure para visualizar os resultados dos testes na interface da plataforma toda vez que o projeto for rodado, utilizando o comando 'mvn allure::serve'.
