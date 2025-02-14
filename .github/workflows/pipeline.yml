@@ -39,7 +39,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: allure-report
-          path: target/allure-maven-plugin
+          path: target/site/allure-maven-plugin
 #
 #      - name: Salvar Relatório Allure como Artefato
 #        uses: actions/upload-artifact@v4
