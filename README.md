@@ -1,4 +1,4 @@
-Este repositório contém um teste automatizado E2E (Selenium WebDriver, Cucumber) utilizando de uma plataforma aberta ao público para estudos de automação.
+Este repositório contém um teste automatizado E2E (Selenium WebDriver, Cucumber) utilizando de uma plataforma e-commerce aberta ao público para estudos de automação.
 
 No repositório está configurado uma pipeline para rodar todos os testes caso seja feito um Push ou Pull Request para a branch Master. 
 
